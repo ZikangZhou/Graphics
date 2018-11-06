@@ -1,0 +1,729 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>640</width>
+    <height>480</height>
+   </rect>
+  </property>
+  <property name="mouseTracking">
+   <bool>true</bool>
+  </property>
+  <property name="windowTitle">
+   <string>画图</string>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>16</width>
+    <height>16</height>
+   </size>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="mouseTracking">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>640</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>文件</string>
+    </property>
+    <widget class="QMenu" name="menuOpen_Recent">
+     <property name="title">
+      <string>打开最近使用</string>
+     </property>
+     <addaction name="separator"/>
+     <addaction name="actionClear_Menu"/>
+    </widget>
+    <addaction name="actionNew"/>
+    <addaction name="actionOpen"/>
+    <addaction name="menuOpen_Recent"/>
+    <addaction name="separator"/>
+    <addaction name="actionClose_Window"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionCopy"/>
+    <addaction name="actionRename"/>
+    <addaction name="actionMoveTo"/>
+    <addaction name="actionExport"/>
+    <addaction name="actionExport_To_PDF"/>
+    <addaction name="separator"/>
+    <addaction name="actionPrint"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>编辑</string>
+    </property>
+    <addaction name="actionUndo"/>
+    <addaction name="actionRedo"/>
+    <addaction name="separator"/>
+    <addaction name="actionCut"/>
+    <addaction name="actionCopy_2"/>
+    <addaction name="actionPaste"/>
+    <addaction name="actionDelete"/>
+    <addaction name="actionSelect_All"/>
+    <addaction name="separator"/>
+    <addaction name="actionInsert"/>
+    <addaction name="actionMove_To_Trash"/>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>显示</string>
+    </property>
+    <addaction name="actionHide_ToolBar"/>
+    <addaction name="separator"/>
+    <addaction name="actionZoom_In"/>
+    <addaction name="actionZoom_Out"/>
+   </widget>
+   <widget class="QMenu" name="menu_4">
+    <property name="title">
+     <string>工具</string>
+    </property>
+    <addaction name="actionChange_Color"/>
+    <addaction name="actionResize"/>
+    <addaction name="separator"/>
+    <addaction name="actionRotate_To_Left"/>
+    <addaction name="actionRotate_to_Right"/>
+    <addaction name="actionFlip_Horizontal"/>
+    <addaction name="actionFlip_Vertical"/>
+    <addaction name="actionClip"/>
+   </widget>
+   <widget class="QMenu" name="menu_5">
+    <property name="title">
+     <string>窗口</string>
+    </property>
+    <addaction name="actionMinimize"/>
+    <addaction name="actionZoom"/>
+   </widget>
+   <widget class="QMenu" name="menu_6">
+    <property name="title">
+     <string>帮助</string>
+    </property>
+    <addaction name="actionHelp"/>
+   </widget>
+   <addaction name="menu"/>
+   <addaction name="menu_2"/>
+   <addaction name="menu_3"/>
+   <addaction name="menu_4"/>
+   <addaction name="menu_5"/>
+   <addaction name="menu_6"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>20</width>
+     <height>20</height>
+    </size>
+   </property>
+   <property name="floatable">
+    <bool>false</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionZoom_Out"/>
+   <addaction name="actionZoom_In"/>
+   <addaction name="actionShare"/>
+   <addaction name="separator"/>
+   <addaction name="actionRotate_To_Left"/>
+   <addaction name="actionRotate_to_Right"/>
+   <addaction name="actionFlip_Horizontal"/>
+   <addaction name="actionFlip_Vertical"/>
+   <addaction name="separator"/>
+   <addaction name="actionClip"/>
+   <addaction name="separator"/>
+   <addaction name="actionChange_Color"/>
+   <addaction name="actionResize"/>
+   <addaction name="separator"/>
+   <addaction name="actionPattern"/>
+   <addaction name="actionBorder_Color"/>
+   <addaction name="actionFill_Color"/>
+  </widget>
+  <action name="actionNew">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-创建新的-100.png</normaloff>:/image/images/icons8-创建新的-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>新建</string>
+   </property>
+   <property name="statusTip">
+    <string>新建</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionOpen">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-打开文件夹-100.png</normaloff>:/image/images/icons8-打开文件夹-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>打开</string>
+   </property>
+   <property name="statusTip">
+    <string>打开</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionClose_Window">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-关闭窗口-100.png</normaloff>:/image/images/icons8-关闭窗口-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>关闭窗口</string>
+   </property>
+   <property name="statusTip">
+    <string>关闭窗口</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+W</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-另存为-100.png</normaloff>:/image/images/icons8-另存为-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>存储</string>
+   </property>
+   <property name="statusTip">
+    <string>存储</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionCopy">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-复制-100.png</normaloff>:/image/images/icons8-复制-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>复制</string>
+   </property>
+   <property name="statusTip">
+    <string>复制</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+Num+S</string>
+   </property>
+  </action>
+  <action name="actionRename">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-重命名-100.png</normaloff>:/image/images/icons8-重命名-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>重新命名...</string>
+   </property>
+   <property name="statusTip">
+    <string>重新命名</string>
+   </property>
+  </action>
+  <action name="actionClear_Menu">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-清除搜索-100.png</normaloff>:/image/images/icons8-清除搜索-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>清除菜单</string>
+   </property>
+   <property name="statusTip">
+    <string>清除菜单</string>
+   </property>
+  </action>
+  <action name="actionMoveTo">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-右2-100.png</normaloff>:/image/images/icons8-右2-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>移到...</string>
+   </property>
+   <property name="statusTip">
+    <string>移到</string>
+   </property>
+  </action>
+  <action name="actionExport">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-出口-100.png</normaloff>:/image/images/icons8-出口-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>导出...</string>
+   </property>
+   <property name="statusTip">
+    <string>导出</string>
+   </property>
+  </action>
+  <action name="actionExport_To_PDF">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-导出pdf-100.png</normaloff>:/image/images/icons8-导出pdf-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>导出为PDF...</string>
+   </property>
+   <property name="iconText">
+    <string>导出为PDF</string>
+   </property>
+   <property name="statusTip">
+    <string>导出为PDF</string>
+   </property>
+  </action>
+  <action name="actionPrint">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-打印-100.png</normaloff>:/image/images/icons8-打印-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>打印</string>
+   </property>
+   <property name="statusTip">
+    <string>打印</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="actionUndo">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-撤销-100.png</normaloff>:/image/images/icons8-撤销-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>撤销</string>
+   </property>
+   <property name="statusTip">
+    <string>撤销</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Z</string>
+   </property>
+  </action>
+  <action name="actionRedo">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-恢复-100.png</normaloff>:/image/images/icons8-恢复-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>重做</string>
+   </property>
+   <property name="statusTip">
+    <string>重做</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+Num+Z</string>
+   </property>
+  </action>
+  <action name="actionCut">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-剪切-100.png</normaloff>:/image/images/icons8-剪切-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>剪切</string>
+   </property>
+   <property name="statusTip">
+    <string>剪切</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
+   </property>
+  </action>
+  <action name="actionCopy_2">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-复制-100.png</normaloff>:/image/images/icons8-复制-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>拷贝</string>
+   </property>
+   <property name="statusTip">
+    <string>拷贝</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="actionPaste">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-粘贴-100.png</normaloff>:/image/images/icons8-粘贴-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>粘贴</string>
+   </property>
+   <property name="statusTip">
+    <string>粘贴</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+V</string>
+   </property>
+  </action>
+  <action name="actionDelete">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-删除-100.png</normaloff>:/image/images/icons8-删除-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>删除</string>
+   </property>
+   <property name="statusTip">
+    <string>删除</string>
+   </property>
+  </action>
+  <action name="actionSelect_All">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-全选-100.png</normaloff>:/image/images/icons8-全选-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>全选</string>
+   </property>
+   <property name="statusTip">
+    <string>全选</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
+   </property>
+  </action>
+  <action name="actionInsert">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-插入-100.png</normaloff>:/image/images/icons8-插入-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>插入</string>
+   </property>
+   <property name="statusTip">
+    <string>插入</string>
+   </property>
+  </action>
+  <action name="actionMove_To_Trash">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-删除-100.png</normaloff>:/image/images/icons8-删除-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>移到废纸篓</string>
+   </property>
+   <property name="statusTip">
+    <string>移到废纸篓</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Backspace</string>
+   </property>
+  </action>
+  <action name="actionZoom_In">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-zoom-in-100.png</normaloff>:/image/images/icons8-zoom-in-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>放大</string>
+   </property>
+   <property name="statusTip">
+    <string>放大</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+=</string>
+   </property>
+  </action>
+  <action name="actionZoom_Out">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-zoom-out-100.png</normaloff>:/image/images/icons8-zoom-out-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>缩小</string>
+   </property>
+   <property name="statusTip">
+    <string>缩小</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+-</string>
+   </property>
+  </action>
+  <action name="actionChange_Color">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-涂料调色-100.png</normaloff>:/image/images/icons8-涂料调色-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>调整颜色</string>
+   </property>
+   <property name="statusTip">
+    <string>调整颜色</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+C</string>
+   </property>
+  </action>
+  <action name="actionResize">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-调整对角线-100.png</normaloff>:/image/images/icons8-调整对角线-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>调整大小</string>
+   </property>
+   <property name="statusTip">
+    <string>调整大小</string>
+   </property>
+  </action>
+  <action name="actionRotate_To_Left">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-向左旋转-100.png</normaloff>:/image/images/icons8-向左旋转-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>向左旋转</string>
+   </property>
+   <property name="statusTip">
+    <string>向左旋转</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+L</string>
+   </property>
+  </action>
+  <action name="actionRotate_to_Right">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-向右旋转-100.png</normaloff>:/image/images/icons8-向右旋转-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>向右旋转</string>
+   </property>
+   <property name="statusTip">
+    <string>向右旋转</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="actionFlip_Horizontal">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-水平翻转-100.png</normaloff>:/image/images/icons8-水平翻转-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>水平翻转</string>
+   </property>
+   <property name="statusTip">
+    <string>水平翻转</string>
+   </property>
+  </action>
+  <action name="actionFlip_Vertical">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-垂直翻转-100.png</normaloff>:/image/images/icons8-垂直翻转-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>垂直翻转</string>
+   </property>
+   <property name="statusTip">
+    <string>垂直翻转</string>
+   </property>
+  </action>
+  <action name="actionClip">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-剪切-100.png</normaloff>:/image/images/icons8-剪切-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>裁剪</string>
+   </property>
+   <property name="statusTip">
+    <string>裁剪</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+K</string>
+   </property>
+  </action>
+  <action name="actionMinimize">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-最小化窗口-100.png</normaloff>:/image/images/icons8-最小化窗口-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>最小化</string>
+   </property>
+   <property name="statusTip">
+    <string>最小化</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+M</string>
+   </property>
+  </action>
+  <action name="actionZoom">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-缩小-100.png</normaloff>:/image/images/icons8-缩小-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>缩放</string>
+   </property>
+   <property name="statusTip">
+    <string>缩放</string>
+   </property>
+  </action>
+  <action name="actionSearch">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-搜索-100.png</normaloff>:/image/images/icons8-搜索-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>搜索</string>
+   </property>
+   <property name="statusTip">
+    <string>搜索</string>
+   </property>
+  </action>
+  <action name="actionHelp">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-帮助-100.png</normaloff>:/image/images/icons8-帮助-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>画图帮助</string>
+   </property>
+   <property name="statusTip">
+    <string>画图帮助</string>
+   </property>
+  </action>
+  <action name="actionShare">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-上传-100.png</normaloff>:/image/images/icons8-上传-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>共享</string>
+   </property>
+   <property name="toolTip">
+    <string>共享</string>
+   </property>
+   <property name="statusTip">
+    <string>共享</string>
+   </property>
+  </action>
+  <action name="actionSelect">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-选择无-100.png</normaloff>:/image/images/icons8-选择无-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>选择工具</string>
+   </property>
+   <property name="toolTip">
+    <string>选择工具</string>
+   </property>
+   <property name="statusTip">
+    <string>选择工具</string>
+   </property>
+  </action>
+  <action name="actionShape">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-改变形状-100.png</normaloff>:/image/images/icons8-改变形状-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>形状</string>
+   </property>
+   <property name="toolTip">
+    <string>形状</string>
+   </property>
+   <property name="statusTip">
+    <string>形状</string>
+   </property>
+  </action>
+  <action name="actionPattern">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-行宽-100.png</normaloff>:/image/images/icons8-行宽-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>形状样式</string>
+   </property>
+   <property name="toolTip">
+    <string>形状样式</string>
+   </property>
+   <property name="statusTip">
+    <string>形状样式</string>
+   </property>
+  </action>
+  <action name="actionBorder_Color">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-边框颜色-100.png</normaloff>:/image/images/icons8-边框颜色-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>边框颜色</string>
+   </property>
+   <property name="toolTip">
+    <string>边框颜色</string>
+   </property>
+   <property name="statusTip">
+    <string>边框颜色</string>
+   </property>
+  </action>
+  <action name="actionFill_Color">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-填色-100.png</normaloff>:/image/images/icons8-填色-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>填充颜色</string>
+   </property>
+   <property name="toolTip">
+    <string>填充颜色</string>
+   </property>
+   <property name="statusTip">
+    <string>填充颜色</string>
+   </property>
+  </action>
+  <action name="actionHide_ToolBar">
+   <property name="icon">
+    <iconset resource="resource.qrc">
+     <normaloff>:/image/images/icons8-隐藏-100.png</normaloff>:/image/images/icons8-隐藏-100.png</iconset>
+   </property>
+   <property name="text">
+    <string>隐藏工具栏</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
+ <connections/>
+</ui>
