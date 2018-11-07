@@ -94,7 +94,7 @@
     <addaction name="actionResize"/>
     <addaction name="separator"/>
     <addaction name="actionRotate_To_Left"/>
-    <addaction name="actionRotate_to_Right"/>
+    <addaction name="actionRotate_To_Right"/>
     <addaction name="actionFlip_Horizontal"/>
     <addaction name="actionFlip_Vertical"/>
     <addaction name="actionClip"/>
@@ -147,7 +147,7 @@
    <addaction name="actionShare"/>
    <addaction name="separator"/>
    <addaction name="actionRotate_To_Left"/>
-   <addaction name="actionRotate_to_Right"/>
+   <addaction name="actionRotate_To_Right"/>
    <addaction name="actionFlip_Horizontal"/>
    <addaction name="actionFlip_Vertical"/>
    <addaction name="separator"/>
@@ -514,7 +514,7 @@
     <string>Ctrl+L</string>
    </property>
   </action>
-  <action name="actionRotate_to_Right">
+  <action name="actionRotate_To_Right">
    <property name="icon">
     <iconset resource="resource.qrc">
      <normaloff>:/image/images/icons8-向右旋转-100.png</normaloff>:/image/images/icons8-向右旋转-100.png</iconset>

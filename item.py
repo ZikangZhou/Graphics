@@ -32,6 +32,8 @@ class Line(QGraphicsLineItem):
 
     center_point = None
     resize = ""
+    rotate = False
+    angle = 0
     last_x = 0
     last_y = 0
 
@@ -267,7 +269,7 @@ class Rectangle(QGraphicsRectItem):
         else:
             super().mouseMoveEvent(event)
 
-        # self.setTransformOriginPoint(self.rect().center())
+        self.setTransformOriginPoint(self.rect().center())
         self.last_x = cur_pos.x()
         self.last_y = cur_pos.y()
 

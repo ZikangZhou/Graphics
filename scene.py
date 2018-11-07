@@ -37,6 +37,33 @@ class Scene(QGraphicsScene):
                     self.removeItem(it)
             self.clip_area = None
 
+    def rotate(self):
+        sender = self.sender()
+        for it in self.selectedItems():
+            # it.setTransformOriginPoint(it.boundingRect().center())
+            if sender.objectName() == "actionRotate_To_Left":
+                it.setTransformOriginPoint(it.boundingRect().center())
+                it.angle = it.angle - 90
+                it.setRotation(it.angle)
+            elif sender.objectName() == "actionRotate_To_Right":
+                it.setTransformOriginPoint(it.boundingRect().center())
+                it.angle = it.angle + 90
+                it.setRotation(it.angle)
+            elif sender.objectName() == "actionFlip_Horizontal":
+                it.setTransformOriginPoint(it.boundingRect().center())
+                transform = it.transform()
+                transform.translate(it.boundingRect().center().x(), it.boundingRect().center().y())
+                transform.rotate(180, Qt.YAxis)
+                transform.translate(-it.boundingRect().center().x(), -it.boundingRect().center().y())
+                it.setTransform(transform)
+            elif sender.objectName() == "actionFlip_Vertical":
+                it.setTransformOriginPoint(it.boundingRect().center())
+                transform = it.transform()
+                transform.translate(it.boundingRect().center().x(), it.boundingRect().center().y())
+                transform.rotate(180, Qt.XAxis)
+                transform.translate(-it.boundingRect().center().x(), -it.boundingRect().center().y())
+                it.setTransform(transform)
+
     def mousePressEvent(self, event):
         super().mousePressEvent(event)
         if not event.isAccepted() and event.button() == Qt.LeftButton:

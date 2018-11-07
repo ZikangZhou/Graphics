@@ -100,6 +100,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.actionPattern.triggered.connect(self.show_pen_properties_dialog)
         self.actionZoom_In.triggered.connect(self.view.zoom_in)
         self.actionZoom_Out.triggered.connect(self.view.zoom_out)
+        self.actionRotate_To_Left.triggered.connect(self.scene.rotate)
+        self.actionRotate_To_Right.triggered.connect(self.scene.rotate)
+        self.actionFlip_Horizontal.triggered.connect(self.scene.rotate)
+        self.actionFlip_Vertical.triggered.connect(self.scene.rotate)
         self.shape_line_action.triggered.connect(self.emit_set_cur_shape_signal)
         self.shape_rectangle_action.triggered.connect(self.emit_set_cur_shape_signal)
         self.select_rectangle_action.triggered.connect(self.emit_set_clip_area_signal)
@@ -108,42 +112,75 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.actionNew.triggered.connect(self.new)
         self.actionSave.triggered.connect(self.save)
         self.actionOpen.triggered.connect(self.open)
+        self.actionClose_Window.triggered.connect(self.close)
+        self.actionRename.triggered.connect(self.rename)
+        self.actionMoveTo.triggered.connect(self.move_to)
+        self.actionCopy.triggered.connect(self.copy)
         self.signal.set_cur_shape.connect(self.scene.set_cur_shape)
         self.signal.set_clip_area.connect(self.scene.set_clip_area)
 
     def new(self):
-        self.file_name = QFileDialog.getSaveFileName(None, "保存为", "./",
-                                                     "Image Files (*.png *.jpg *.bmp)")
-        if self.file_name[0]:
+        file_name = QFileDialog.getSaveFileName(None, "保存为", "./",
+                                                "Image Files (*.png *.jpg *.bmp)")
+        if file_name[0]:
+            self.file_name = file_name[0]
             image = self.view.grab()
-            image.save(self.file_name[0])
+            image.save(self.file_name)
 
     def save(self):
+        if self.file_name is None:
+            self.file_name = QFileDialog.getSaveFileName(None, "保存为", "./",
+                                                         "Image Files (*.png *.jpg *.bmp)")[0]
         if self.file_name:
-            file_name = self.file_name
-        else:
-            file_name = QFileDialog.getSaveFileName(None, "保存为", "./",
-                                                    "Image Files (*.png *.jpg *.bmp)")
-            self.file_name = file_name
-
-        if file_name[0]:
             self.view.scene().clearSelection()
             if self.view.scene().clip_area is not None:
                 self.view.scene().removeItem(self.view.scene().clip_area)
                 self.view.scene().clip_area = None
             image = self.view.grab()
-            image.save(file_name[0])
+            image.save(self.file_name)
 
     def open(self):
         file_name = QFileDialog.getOpenFileName(None, "打开", "./",
                                                 "Image Files (*.png *.jpg *.bmp)")
         if file_name[0]:
-            self.file_name = file_name
+            self.file_name = file_name[0]
             background = QGraphicsPixmapItem(QPixmap(file_name[0]))
             background.setFlags(QGraphicsItem.ItemIsSelectable | QGraphicsItem.ItemIsMovable)
             background.setPos(self.view.scene().width() / 2 - background.pixmap().width() / 2,
                               self.view.scene().height() / 2 - background.pixmap().height() / 2)
             self.view.scene().addItem(background)
+
+    def copy(self):
+        if self.file_name is None:
+            self.save()
+            return
+        directory = QFileDialog.getExistingDirectory(None, "选择文件夹", "./", QFileDialog.ShowDirsOnly)
+        pos = self.file_name.rfind("/")
+        new_file_name = directory + self.file_name[pos:]
+        QFile.copy(self.file_name, new_file_name)
+
+    def rename(self):
+        if self.file_name is not None:
+            new_file_name, ok = QInputDialog.getText(None, "重命名", "输入新的文件名: ")
+            new_file_name = str(new_file_name)
+            if ok:
+                file = QFile(self.file_name)
+                pos1 = self.file_name.rfind("/")
+                pos2 = self.file_name.rfind(".")
+                self.file_name = self.file_name[:(pos1 + 1)] + new_file_name + self.file_name[pos2:]
+                file.rename(self.file_name)
+        self.save()
+
+    def move_to(self):
+        if self.file_name is None:
+            self.save()
+            return
+        directory = QFileDialog.getExistingDirectory(None, "选择文件夹", "./", QFileDialog.ShowDirsOnly)
+        pos = self.file_name.rfind("/")
+        new_file_name = directory + self.file_name[pos:]
+        QFile.copy(self.file_name, new_file_name)
+        QFile.remove(self.file_name)
+        self.file_name = new_file_name
 
     def show_color_dialog(self):
         sender = self.sender()
